@@ -70,24 +70,24 @@ always @(posedge clk)begin
     case (Counter)
         totalWait:  begin
                         ENABLE<=0;									
-								regDTA<=1;
-								regCLK<=1;
+                        regDTA<=1;
+                        regCLK<=1;
                         if (SWAP==0)begin
                             if (EDGE==3)begin
                                 DETECTED<=1;
-										  Counter<=0;
+                                Counter<=0;
                             end
                             else begin
                                 SWAP<=1;
-										  Counter<=(startup/2);
+                                Counter<=(startup/2);
                             end
                         end
                         else begin
-									DETECTED<=1;
-									Counter<=0;
-                            if (EDGE<3)begin
-										SWAP<=0;										
-                            end
+                                DETECTED<=1;
+                                Counter<=0;
+                                if (EDGE<3)begin
+                                    SWAP<=0;										
+                                end
                         end
                     end
 			0:          begin
@@ -116,16 +116,16 @@ always @(posedge clk)begin
                             if (SWAP==0) begin
                                 Prev_PS2CLK<=PS2CLK;
                                 if (PS2CLK!=Prev_PS2CLK && PS2CLK==0)begin
-												if (EDGE<3)EDGE<=EDGE+1;
-												else regDTA<=1;
-											 end
+                                    if (EDGE<3)EDGE<=EDGE+1;
+                                    else regDTA<=1;
+                                end
                             end
                             else begin
                                 Prev_PS2CLK<=PS2DTA;
                                 if (PS2DTA!=Prev_PS2CLK && PS2DTA==0) begin
-													if (EDGE<3)EDGE<=EDGE+1;
-													else regDTA<=1;
-												end
+                                    if (EDGE<3)EDGE<=EDGE+1;
+                                    else regDTA<=1;
+                                end
                             end
                         end
                     end
